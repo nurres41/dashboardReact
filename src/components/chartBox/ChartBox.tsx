@@ -1,33 +1,50 @@
 import "./chartBox.scss";
 import { Link } from "react-router-dom";
-import { LineChart, Line,ResponsiveContainer } from 'recharts';
+import { LineChart, Line,ResponsiveContainer, Tooltip } from 'recharts';
 
-const ChartBox = () => {
+
+type Props ={
+  color : string;
+  icon : string;
+  title : string;
+  dataKey : string;
+  number : number | string;
+  percentange : number;
+  chartData : object[];
+}
+
+const ChartBox = (props: Props) => {
   return (
     <div className="chartBox">
       <div className="boxInfo">
         <div className="title">
-          <img src="/user.svg" alt="" />
-          <span>Total Users</span>
+          <img src={props.icon} alt="" />
+          <span>{props.title}</span>
         </div>
-        <h1>11.412</h1>
-        <Link to="/">View All</Link>
+        <h1>{props.number}</h1>
+        <Link to="/" style={{color:props.color}}>View All</Link>
       </div>
       <div className="chartInfo">
         <div className="chart">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart width={300} height={100} data={data}>
+          <ResponsiveContainer width="99%" height="100%">
+            <LineChart data={props.chartData}>
+              <Tooltip 
+                contentStyle={{background:"transparent",border:"none"}}
+                labelStyle={{display:"none"}}
+                position={{x:15,y:50}}
+              />
               <Line
                 type="monotone"
-                dataKey="pv"
-                stroke="#8884d8"
+                dataKey={props.dataKey}
+                stroke={props.color}
                 strokeWidth={2}
+                dot={false}
               />
             </LineChart>
           </ResponsiveContainer>
         </div>
         <div className="texts">
-          <span className="percent">45%</span>
+          <span className="percentange" style={{color:props.percentange < 0 ? "tomato" : "limegreen"}}>45%</span>
           <span className="duration">This Month</span>
         </div>
       </div>

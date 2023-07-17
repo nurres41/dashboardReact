@@ -9,7 +9,7 @@
         margin-bottom: 20px;
 
         .title{
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 300;
             color: $soft-color;
             text-transform: uppercase;
@@ -18,9 +18,10 @@
         .listItem{
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
             padding: 10px;
             border-radius: 5px;
+            font-size: 14px;
 
             &:hover{
                 background-color: $soft-bg;
